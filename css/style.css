@@ -1,0 +1,146 @@
+:root {
+  --bg: #111;
+  --bg-alt: #1c1c1c;
+  --fg: #eee;
+  --fg-dim: #999;
+  --border: #444;
+  --accent: #ccc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto;
+  height: 100dvh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Courier New", Courier, monospace;
+  overflow: hidden;
+}
+
+.app-header {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.attribution {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  min-height: 1.5rem;
+}
+
+.attribution-empty {
+  color: var(--fg-dim);
+  margin: 0;
+}
+
+.attribution-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.attribution-row .name {
+  color: var(--fg);
+}
+
+.attribution-row .author {
+  color: var(--fg-dim);
+}
+
+.transport {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.transport button {
+  min-width: 0;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+button {
+  min-height: 44px;
+  background: var(--bg-alt);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  font-family: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+
+button:active {
+  background: var(--border);
+}
+
+button:disabled {
+  color: var(--fg-dim);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.soundboard {
+  overflow-y: auto;
+  padding: 0.5rem 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 0.4rem;
+  align-content: start;
+}
+
+.soundboard button {
+  aspect-ratio: 1.4 / 1;
+  font-size: 0.7rem;
+  padding: 0.25rem;
+}
+
+.params {
+  border-top: 1px solid var(--border);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+.params summary {
+  cursor: pointer;
+  color: var(--fg-dim);
+}
+
+.picker {
+  border: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+}
+
+.picker legend {
+  color: var(--fg-dim);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  padding: 0;
+}
+
+.picker label {
+  display: inline-block;
+  margin: 0.2rem 0.5rem 0.2rem 0;
+}

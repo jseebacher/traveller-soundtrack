@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Traveller Soundboard</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="app-header">
+  <h1>TRAVELLER SOUNDBOARD</h1>
+</header>
+
+<section id="attribution" class="attribution" aria-live="polite">
+  <p class="attribution-empty">nothing playing</p>
+</section>
+
+<section id="transport" class="transport">
+  <button id="btn-generate" type="button">GENERATE</button>
+  <button id="btn-stop" type="button">STOP</button>
+  <button id="btn-play" type="button" disabled>PLAY</button>
+</section>
+
+<section id="soundboard" class="soundboard">
+  <!-- fx buttons rendered here at runtime -->
+</section>
+
+<details id="params" class="params">
+  <summary>parameters &#9662;</summary>
+  <fieldset id="intensity-picker" class="picker">
+    <legend>intensity</legend>
+  </fieldset>
+  <fieldset id="mood-picker" class="picker">
+    <legend>mood</legend>
+  </fieldset>
+  <fieldset id="fxloop-picker" class="picker">
+    <legend>fx loops</legend>
+  </fieldset>
+</details>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
