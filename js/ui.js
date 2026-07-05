@@ -1,48 +1,45 @@
 export function renderIntensityPicker(container, selected, onChange) {
   container.innerHTML = '<legend>intensity</legend>';
   for (const value of [1, 2, 3]) {
-    const label = document.createElement("label");
-    const input = document.createElement("input");
-    input.type = "radio";
-    input.name = "intensity";
-    input.value = String(value);
-    input.checked = selected === value;
-    input.addEventListener("change", () => onChange(value));
-    label.append(input, ` ${value}`);
-    container.appendChild(label);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = String(value);
+    button.classList.toggle("selected", selected === value);
+    button.addEventListener("click", () => onChange(selected === value ? null : value));
+    container.appendChild(button);
   }
 }
 
 export function renderMoodPicker(container, moods, selected, onChange) {
   container.innerHTML = '<legend>mood</legend>';
   for (const mood of moods) {
-    const label = document.createElement("label");
-    const input = document.createElement("input");
-    input.type = "radio";
-    input.name = "mood";
-    input.value = mood;
-    input.checked = selected === mood;
-    input.addEventListener("change", () => onChange(mood));
-    label.append(input, ` ${mood}`);
-    container.appendChild(label);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = mood;
+    button.classList.toggle("selected", selected === mood);
+    button.addEventListener("click", () => onChange(selected === mood ? null : mood));
+    container.appendChild(button);
   }
 }
 
 export function renderFxLoopPicker(container, fxLoops, selectedIds, onChange) {
   container.innerHTML = '<legend>fx loops</legend>';
+  const selected = new Set(selectedIds ?? []);
   for (const loop of fxLoops) {
-    const label = document.createElement("label");
-    const input = document.createElement("input");
-    input.type = "checkbox";
-    input.name = "fxLoopId";
-    input.value = loop.id;
-    input.checked = (selectedIds ?? []).includes(loop.id);
-    input.addEventListener("change", () => {
-      const checked = [...container.querySelectorAll('input[name="fxLoopId"]:checked')].map((i) => i.value);
-      onChange(checked);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = loop.name;
+    button.classList.toggle("selected", selected.has(loop.id));
+    button.addEventListener("click", () => {
+      const next = new Set(selected);
+      if (next.has(loop.id)) {
+        next.delete(loop.id);
+      } else {
+        next.add(loop.id);
+      }
+      onChange([...next]);
     });
-    label.append(input, ` ${loop.name}`);
-    container.appendChild(label);
+    container.appendChild(button);
   }
 }
 

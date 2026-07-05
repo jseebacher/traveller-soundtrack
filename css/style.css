@@ -27,6 +27,34 @@ body {
 }
 
 .app-header {
+  grid-row: 1;
+}
+
+#attribution {
+  grid-row: 2;
+}
+
+#transport {
+  grid-row: 3;
+}
+
+#soundboard {
+  grid-row: 4;
+}
+
+#params {
+  grid-row: 5;
+}
+
+body.params-open {
+  grid-template-rows: auto auto auto 0 1fr;
+}
+
+body.params-open #soundboard {
+  display: none;
+}
+
+.app-header {
   padding: 0.5rem 0.75rem;
   border-bottom: 1px solid var(--border);
 }
@@ -120,6 +148,7 @@ button:disabled {
   border-top: 1px solid var(--border);
   padding: 0.4rem 0.75rem;
   font-size: 0.8rem;
+  overflow-y: auto;
 }
 
 .params summary {
@@ -140,7 +169,56 @@ button:disabled {
   padding: 0;
 }
 
-.picker label {
+.picker button {
   display: inline-block;
+  min-height: 32px;
   margin: 0.2rem 0.5rem 0.2rem 0;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+}
+
+.picker button.selected {
+  background: var(--bg-alt);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.picker.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.picker.grid3 legend {
+  grid-column: 1 / -1;
+}
+
+.picker.grid3 button {
+  display: block;
+  min-height: 44px;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+}
+
+.picker.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 0.4rem;
+  align-content: start;
+}
+
+.picker.tiles legend {
+  grid-column: 1 / -1;
+}
+
+.picker.tiles button {
+  display: block;
+  min-height: 0;
+  margin: 0;
+  aspect-ratio: 1.4 / 1;
+  font-size: 0.7rem;
+  padding: 0.25rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }

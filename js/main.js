@@ -18,6 +18,7 @@ const TRANSIENT_MESSAGE_MS = 3000;
 
 const attributionEl = document.getElementById("attribution");
 const soundboardEl = document.getElementById("soundboard");
+const paramsEl = document.getElementById("params");
 const intensityPickerEl = document.getElementById("intensity-picker");
 const moodPickerEl = document.getElementById("mood-picker");
 const fxLoopPickerEl = document.getElementById("fxloop-picker");
@@ -59,14 +60,17 @@ function renderPickers() {
   renderIntensityPicker(intensityPickerEl, params.intensity, (value) => {
     state.setParams({ intensity: value });
     persistParams(state.getState().params);
+    renderPickers();
   });
   renderMoodPicker(moodPickerEl, getAvailableMoods(lib), params.mood, (value) => {
     state.setParams({ mood: value });
     persistParams(state.getState().params);
+    renderPickers();
   });
   renderFxLoopPicker(fxLoopPickerEl, getAllFxLoops(lib), params.fxLoopIds, (values) => {
     state.setParams({ fxLoopIds: values });
     persistParams(state.getState().params);
+    renderPickers();
   });
 }
 
@@ -114,6 +118,9 @@ async function main() {
   if (persisted) state.setParams(persisted);
 
   renderPickers();
+  paramsEl.addEventListener("toggle", () => {
+    document.body.classList.toggle("params-open", paramsEl.open);
+  });
   renderSoundboard(soundboardEl, getAllFx(lib), (meta) => {
     engine.resume();
     engine.playOneShot(meta).catch((err) => console.error("failed to play fx", err));
